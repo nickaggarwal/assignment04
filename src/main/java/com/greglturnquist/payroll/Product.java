@@ -19,7 +19,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    Long Id;
 
     String name ;
     String category ;
@@ -27,5 +27,7 @@ public class Product {
     Integer quantity ;
     Float buy_price ;
     Float sell_price ;
+
+    public Product() {}
 
 }
