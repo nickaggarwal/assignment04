@@ -1,4 +1,4 @@
-package com.greglturnquist.payroll;
+package com.greglturnquist.payroll.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

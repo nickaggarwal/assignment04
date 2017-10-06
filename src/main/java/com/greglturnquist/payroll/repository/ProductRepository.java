@@ -1,5 +1,6 @@
-package com.greglturnquist.payroll;
+package com.greglturnquist.payroll.repository;
 
+import com.greglturnquist.payroll.model.Product;
 import org.springframework.data.repository.CrudRepository;
 
 /**

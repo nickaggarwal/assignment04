@@ -13,33 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.greglturnquist.payroll;
+package com.greglturnquist.payroll.controller;
 
-import lombok.Data;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author Greg Turnquist
  */
 // tag::code[]
-@Data
-@Entity
-public class Employee {
+@Controller
+public class HomeController {
 
-	private @Id @GeneratedValue Long id;
-	private String firstName;
-	private String lastName;
-	private String description;
-
-	public Employee() {}
-
-	public Employee(String firstName, String lastName, String description) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.description = description;
+	@RequestMapping(value = "/")
+	public String index() {
+		return "index";
 	}
+
 }
 // end::code[]

@@ -15,6 +15,8 @@
  */
 package com.greglturnquist.payroll;
 
+import com.greglturnquist.payroll.model.Employee;
+import com.greglturnquist.payroll.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

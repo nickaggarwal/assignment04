@@ -15,8 +15,12 @@
  */
 package com.greglturnquist.payroll;
 
+import com.greglturnquist.payroll.model.Account;
+import com.greglturnquist.payroll.repository.AccountRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 /**
  * @author Greg Turnquist
@@ -27,6 +31,20 @@ public class ReactAndSpringDataRestApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ReactAndSpringDataRestApplication.class, args);
+	}
+
+	@Bean
+	CommandLineRunner init(final AccountRepository accountRepository) {
+
+		return new CommandLineRunner() {
+
+			@Override
+			public void run(String... arg0) throws Exception {
+				accountRepository.save(new Account("nick", "password", "nick.aggarwal@gmail.com", "Nilesh", "Agarwal"));
+			}
+
+		};
+
 	}
 }
 // end::code[]
