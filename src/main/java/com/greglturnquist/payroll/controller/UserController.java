@@ -12,6 +12,7 @@ import com.greglturnquist.payroll.repository.AuthorityRepository;
 import com.greglturnquist.payroll.security.TokenHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -99,16 +100,15 @@ public class UserController {
         String authToken = tokenHelper.getToken( request );
         String username = tokenHelper.getUsernameFromToken(authToken);
         Account account = accountRepository.findByUsername(username);
-        try{
-            reps  = objectMapper.writeValueAsString(account);
+        if(account != null)
+        {
             JsonParser parser = new JsonParser();
             JsonObject obj = parser.parse(reps).getAsJsonObject();
-            obj.addProperty("password" ,account.getPassword());
-            reps = obj.toString() ;
+            obj.addProperty("password", account.getPassword());
+            reps = obj.toString();
+            return ResponseEntity.accepted().body(reps);
         }
-        catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return ResponseEntity.accepted().body(reps);
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(reps);
     }
 }
